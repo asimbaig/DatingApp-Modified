@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Photo } from 'src/app/_models/Photo';
 import {FileUploader} from 'ng2-file-upload';
-import { AuthService } from 'src/app/_services/Auth.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/_services/user.service';
-import { AlertifyService } from 'src/app/_services/Alertify.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-photo-editor',

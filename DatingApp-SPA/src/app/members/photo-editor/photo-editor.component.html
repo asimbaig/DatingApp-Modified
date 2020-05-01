@@ -14,9 +14,9 @@
 
 <div class="row mt-3">
 
-  <div class="col-md-3">
+  <div class="col-md-3 border border-warning" >
 
-      <h3>Add Photos</h3>
+      <h5>Add Photos</h5>
 
       <div ng2FileDrop
            [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
@@ -27,11 +27,11 @@
           Drop Photos Here
       </div>
 
-      Multiple
+      <h5>Select Photo(s)</h5>
       <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
 
-      Single
-      <input type="file" ng2FileSelect [uploader]="uploader" />
+      <!-- Single
+      <input type="file" ng2FileSelect [uploader]="uploader" /> -->
   </div>
 
   <div class="col-md-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">

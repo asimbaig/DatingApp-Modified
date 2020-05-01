@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/Auth.service';
-import { AlertifyService } from '../_services/Alertify.service';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,11 +12,36 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   model: any = {};
   photoUrl: string;
+  navbarOpen = false;
+  public clicked = false;
+  el: any;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
-  ngOnInit() {
+  toggleNavbar()
+  {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
+  ngOnInit()
+  {
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+  }
+
+  onClick(event): void
+  {
+    event.preventDefault();
+    event.stopPropagation();
+    this.clicked = true;
+  }
+
+  @HostListener('document:click', ['event'])
+  private clickedOutside(event): void
+  {
+    if (this.clicked)
+    {
+        this.el.nativeElement.querySelector('.dropdown-menu').classList.toggle('show');
+    }
   }
 
   login()
