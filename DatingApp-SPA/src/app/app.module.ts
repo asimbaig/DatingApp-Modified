@@ -11,6 +11,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NgxGalleryModule} from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -45,6 +46,12 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/HasRole.directive';
+import { AdminService } from './_services/admin.service';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { PhotoManagmentComponent } from './admin/photo-managment/photo-managment.component';
 
 export function tokenGetter()
 {
@@ -73,7 +80,12 @@ export class CustomHammerConfig extends HammerGestureConfig {
       PhotoEditorComponent,
       ListsComponent,
       MessagesComponent,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      PhotoManagmentComponent,
+      RolesModalComponent
    ],
    imports: [
       BrowserModule,
@@ -89,6 +101,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FileUploadModule,
+      ModalModule.forRoot(),
       JwtModule.forRoot({
         config:
         {
@@ -110,7 +123,11 @@ export class CustomHammerConfig extends HammerGestureConfig {
       PreventUnsavedChanges,
       ListsResolver,
       MsgsResolver,
+      AdminService,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+   ],
+   entryComponents: [
+    RolesModalComponent
    ],
    bootstrap: [
       AppComponent
